@@ -1,0 +1,55 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type UserEntity {
+  _id: String!
+  firstName: String!
+  lastName: String!
+}
+
+type Query {
+  users: [UserEntity!]!
+  user(id: Int!): UserEntity!
+}
+
+type Mutation {
+  createUser(createUserInput: CreateUserInput!): UserEntity!
+  updateUser(updateUserInput: UpdateUserInput!): UserEntity!
+  removeUser(id: Int!): UserEntity!
+}
+
+input CreateUserInput {
+  """
+  Example field "Timofii"
+  """
+  firstName: String!
+
+  """
+  Example field "Zhuravel"
+  """
+  secondName: String!
+
+  """
+  Example field "qwerqwer"
+  """
+  password: String!
+}
+
+input UpdateUserInput {
+  """
+  Example field "Timofii"
+  """
+  firstName: String
+
+  """
+  Example field "Zhuravel"
+  """
+  secondName: String
+
+  """
+  Example field "qwerqwer"
+  """
+  password: String
+  id: Int!
+}
