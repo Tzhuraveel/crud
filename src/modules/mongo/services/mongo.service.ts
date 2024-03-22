@@ -10,7 +10,7 @@ export class MongoService implements TypeOrmOptionsFactory {
   createTypeOrmOptions(): TypeOrmModuleOptions {
     return {
       type: 'mongodb',
-      url: 'mongodb+srv://tzhuraveel:root@crud.ubs3ycx.mongodb.net/?retryWrites=true&w=majority&appName=Crud',
+      url: 'url',
       useNewUrlParser: true,
       logging: true,
       synchronize: true,
