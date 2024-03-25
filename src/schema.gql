@@ -2,21 +2,21 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type UserEntity {
+type User {
   _id: String!
   firstName: String!
   lastName: String!
 }
 
 type Query {
-  users: [UserEntity!]!
-  user(id: Int!): UserEntity!
+  users: [User!]!
+  user(id: String!): User!
 }
 
 type Mutation {
-  createUser(createUserInput: CreateUserInput!): UserEntity!
-  updateUser(updateUserInput: UpdateUserInput!): UserEntity!
-  removeUser(id: Int!): UserEntity!
+  createUser(createUserInput: CreateUserInput!): User!
+  updateUser(updateUserInput: UpdateUserInput!): User!
+  removeUser(id: String!): User!
 }
 
 input CreateUserInput {
@@ -28,7 +28,7 @@ input CreateUserInput {
   """
   Example field "Zhuravel"
   """
-  secondName: String!
+  lastName: String!
 
   """
   Example field "qwerqwer"
@@ -45,7 +45,7 @@ input UpdateUserInput {
   """
   Example field "Zhuravel"
   """
-  secondName: String
+  lastName: String
 
   """
   Example field "qwerqwer"

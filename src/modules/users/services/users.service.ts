@@ -1,34 +1,30 @@
 import { Injectable } from '@nestjs/common';
 import { CreateUserInput } from '../dto/create-user.input';
 import { UpdateUserInput } from '../dto/update-user.input';
-import { UsersRepository } from '../../repository/services/users.repository';
-import { UserEntity } from '../../../database/entities';
+import { User } from '../model/User.model';
+import { UsersRepository } from './user.repository';
 
 @Injectable()
 export class UsersService {
   constructor(private readonly usersRepository: UsersRepository) {}
 
-  async create(createUserInput: CreateUserInput): Promise<UserEntity> {
-    return this.usersRepository.save({
-      firstName: createUserInput.firstName,
-      lastName: createUserInput.secondName,
-      password: createUserInput.password,
-    });
+  async create(createUserInput: CreateUserInput): Promise<User> {
+    return this.usersRepository.create(createUserInput);
   }
 
-  getAll(): Promise<UserEntity[]> {
-    return this.usersRepository.find();
+  async getAll(): Promise<User[]> {
+    return this.usersRepository.getAll();
   }
 
-  getOne(id: number) {
-    return `This action returns a #${id} user`;
+  async getOne(id: string): Promise<User> {
+    return this.usersRepository.getOne(id);
   }
 
-  update(id: number, updateUserInput: UpdateUserInput) {
+  async update(id: number, updateUserInput: UpdateUserInput) {
     return `This action updates a #${id} user`;
   }
 
-  remove(id: number) {
+  async remove(id: string) {
     return `This action removes a #${id} user`;
   }
 }

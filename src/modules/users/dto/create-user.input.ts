@@ -6,7 +6,7 @@ export class CreateUserInput {
   firstName: string;
 
   @Field({ description: 'Example field "Zhuravel"' })
-  secondName: string;
+  lastName: string;
 
   @Field({ description: 'Example field "qwerqwer"' })
   password: string;

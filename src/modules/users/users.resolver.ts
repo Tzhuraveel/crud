@@ -1,37 +1,38 @@
-import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 import { CreateUserInput } from './dto/create-user.input';
 import { UpdateUserInput } from './dto/update-user.input';
-import { UserEntity } from '../../database/entities';
 import { UsersService } from './services/users.service';
+import { ParseObjectIdPipe } from '../../common/pipes';
+import { User } from './model/User.model';
 
-@Resolver(() => UserEntity)
+@Resolver(() => User)
 export class UsersResolver {
   constructor(private readonly usersService: UsersService) {}
 
-  @Mutation(() => UserEntity)
+  @Mutation(() => User)
   async createUser(
     @Args('createUserInput') createUserInput: CreateUserInput,
-  ): Promise<UserEntity> {
+  ): Promise<User> {
     return this.usersService.create(createUserInput);
   }
 
-  @Query(() => [UserEntity], { name: 'users' })
-  getAll(): Promise<UserEntity[]> {
+  @Query(() => [User], { name: 'users' })
+  getAll(): Promise<User[]> {
     return this.usersService.getAll();
   }
 
-  @Query(() => UserEntity, { name: 'user' })
-  getById(@Args('id', { type: () => Int }) id: number) {
+  @Query(() => User, { name: 'user' })
+  getById(@Args('id', ParseObjectIdPipe) id: string) {
     return this.usersService.getOne(id);
   }
 
-  @Mutation(() => UserEntity)
+  @Mutation(() => User)
   updateUser(@Args('updateUserInput') updateUserInput: UpdateUserInput) {
     return this.usersService.update(updateUserInput.id, updateUserInput);
   }
 
-  @Mutation(() => UserEntity)
-  removeUser(@Args('id', { type: () => Int }) id: number) {
+  @Mutation(() => User)
+  removeUser(@Args('id', ParseObjectIdPipe) id: string) {
     return this.usersService.remove(id);
   }
 }
