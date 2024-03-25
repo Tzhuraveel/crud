@@ -12,7 +12,7 @@ import { MongooseModule } from '@nestjs/mongoose';
   imports: [
     MongooseModule.forRootAsync({
       useFactory: () => ({
-        uri: 'mongodb+srv://tzhuraveel:root@crud.ubs3ycx.mongodb.net/?retryWrites=true&w=majority&appName=Crud',
+        uri: 'nope',
       }),
     }),
     GraphQLModule.forRoot<ApolloDriverConfig>({
